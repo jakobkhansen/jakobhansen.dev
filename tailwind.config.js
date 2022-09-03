@@ -4,7 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#2c2f33",
+        void: "#0E0B16",
+        jewel: "#4717F6",
+        jewellight: "#633af7",
+        stark: "#E7DFDD",
         textprimary: "#ffffff",
         textsecondary: "#99aab5",
       },

@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 html {
-  background-color: theme("colors.primary");
+  background-color: theme("colors.void");
   font-family: theme("fontFamily.mono");
+  color: theme("colors.textprimary");
 }
