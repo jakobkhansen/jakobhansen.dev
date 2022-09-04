@@ -5,5 +5,9 @@
 html {
   background-color: theme("colors.void");
   font-family: theme("fontFamily.mono");
-  color: theme("colors.textprimary");
+  color: theme("colors.stark");
+}
+
+svg {
+  fill: currentColor;
 }
