@@ -23,10 +23,10 @@ const Home: NextPage = () => {
                 Computer science student at UiO
               </h2>
             </div>
-            <div className="m-2 flex w-full flex-row justify-center">
-              <LinkedIn className="h-16 w-16 text-stark" />
-              <Github className="h-16 w-16 text-stark" />
-              <Email className="h-8 w-8 text-stark" />
+            <div className="m-2 flex w-full flex-row items-center justify-center">
+              <LinkedIn className="h-6 text-stark" />
+              <Github className="h-6 text-stark" />
+              <Email className="h-6 text-stark" />
             </div>
           </div>
         </div>

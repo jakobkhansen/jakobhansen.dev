@@ -11,3 +11,7 @@ html {
 svg {
   fill: currentColor;
 }
+
+button {
+  outline: none;
+}
