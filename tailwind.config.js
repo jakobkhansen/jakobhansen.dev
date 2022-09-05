@@ -8,7 +8,7 @@ module.exports = {
         jewel: "#4717F6",
         jewellight: "#633af7",
         stark: "#E7DFDD",
-        textprimary: "#ffffff",
+        textprimary: "#E7DFDD",
         textsecondary: "#99aab5",
       },
     },
