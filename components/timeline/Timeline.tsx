@@ -2,10 +2,11 @@ import { Divider } from "./Divider";
 import { Event } from "./Event";
 import Microsoft from "../../public/Microsoft.svg";
 import Bekk from "../../public/bekk.svg";
+import { Popover } from "@headlessui/react";
 
 export function Timeline() {
   return (
-    <TimelineLayout>
+    <Popover.Group className="flex w-full flex-col items-center">
       <Event Logo={Microsoft} title={"Microsoft internship 2022"}>
         Software engineering internship at Microsoft Development Center in Oslo.
         Worked primarily on front-end features used in various Microsoft
@@ -20,7 +21,7 @@ export function Timeline() {
         into the role of a consultant, the agile process, and customer relations
         in the software industry.
       </Event>
-    </TimelineLayout>
+    </Popover.Group>
   );
 }
 

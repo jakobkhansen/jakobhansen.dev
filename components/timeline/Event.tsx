@@ -26,7 +26,7 @@ export function Event({ Logo, title, children }: Props) {
       >
         <div className="h-32 w-32 rounded-full bg-stark duration-300 hover:h-36 hover:w-36">
           <div className="flex h-full w-full items-center justify-center">
-            {Logo && <Logo className="m-2 text-black" />}
+            {Logo && <Logo className="m-2 h-32 w-32 text-black" />}
           </div>
         </div>
       </Popover.Button>
