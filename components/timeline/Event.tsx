@@ -16,15 +16,23 @@ export function Event({ Logo, title, children }: Props) {
   );
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: "right",
-    modifiers: [{ name: "offset", options: { offset: [0, 100] } }],
+    modifiers: [
+      { name: "offset", options: { offset: [0, 100] } },
+      {
+        name: "flip",
+        options: {
+          fallbackPlacements: ["bottom"],
+        },
+      },
+    ],
   });
   return (
-    <Popover className="relative">
+    <Popover className="relative ">
       <Popover.Button
         ref={setReferenceElement}
         className="m-auto flex h-40 w-40 items-center justify-center rounded-full border-2 border-stark bg-transparent outline-none"
       >
-        <div className="h-32 w-32 rounded-full bg-stark duration-300 hover:h-36 hover:w-36">
+        <div className="-z-10 h-32 w-32 rounded-full bg-stark duration-300 hover:h-36 hover:w-36">
           <div className="flex h-full w-full items-center justify-center">
             {Logo && <Logo className="m-2 h-32 w-32 text-black" />}
           </div>
