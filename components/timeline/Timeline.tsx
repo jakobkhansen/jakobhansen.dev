@@ -1,30 +1,31 @@
 import { Divider } from "./Divider";
-import { Event } from "./Event";
 import Microsoft from "../../public/Microsoft.svg";
 import Bekk from "../../public/bekk.svg";
-import { Popover } from "@headlessui/react";
+import { Experience } from "./Experience";
+import { ExperienceEvent } from "./ExperienceEvent";
 
 export function Timeline() {
   return (
-    <Popover.Group className="flex w-full flex-col items-center">
-      <Event Logo={Microsoft} title={"Microsoft internship 2022"}>
-        Software engineering internship at Microsoft Development Center in Oslo.
-        Worked primarily on front-end features used in various Microsoft
-        products such as Outlook and Teams, shipping code to millions of users.
-        Worked with technologies such as React, React Native and Typescript.
-      </Event>
+    <TimelineLayout>
+      <Experience Logo={Microsoft} title={"Microsoft"}>
+        <ExperienceEvent text="Internship 2022" />
+        <ExperienceEvent text="SWE Level 60 2023" />
+      </Experience>
       <Divider />
-      <Event Logo={Bekk} title={"Bekk internship 2021"}>
-        Software engineering summer internship at Bekk Consulting. Worked
-        primarily with AI for Wenn, improving their computer vision services
-        (CarEye). Attended many courses and workshops with Bekk, gaining insight
-        into the role of a consultant, the agile process, and customer relations
-        in the software industry.
-      </Event>
-    </Popover.Group>
+      <Experience Logo={Bekk} title={"Bekk"}>
+        <ExperienceEvent text="Internship 2021" />
+      </Experience>
+    </TimelineLayout>
   );
 }
 
 function TimelineLayout({ children }: { children: React.ReactNode }) {
-  return <div className="flex w-full flex-col items-center">{children}</div>;
+  return (
+    <div
+      style={{ gridTemplateColumns: "min-content min-content" }}
+      className="m-auto grid w-fit grid-cols-2 place-items-center"
+    >
+      {children}
+    </div>
+  );
 }
