@@ -11,12 +11,10 @@ type Props = {
 export const Experience = ({ Logo, title, children }: Props) => {
   return (
     <>
-      <div className="m-auto">
-        {<CompanyButton Logo={Logo} title={title} />}
-      </div>
+      <div>{<CompanyButton Logo={Logo} title={title} />}</div>
       <div
         style={{ placeSelf: "center start" }}
-        className="flex w-fit flex-row items-center"
+        className="flex max-w-2xl flex-row items-center overflow-scroll"
       >
         {React.Children.map(children, (child) => (
           <>

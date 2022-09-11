@@ -8,12 +8,18 @@ export function Timeline() {
   return (
     <TimelineLayout>
       <Experience Logo={Microsoft} title={"Microsoft"}>
-        <ExperienceEvent text="Internship 2022" />
-        <ExperienceEvent text="SWE Level 60 2023" />
+        <ExperienceEvent text="Summer internship" period="2022" />
+        <ExperienceEvent text="Full-time SWE" period="2023" />
       </Experience>
       <Divider />
       <Experience Logo={Bekk} title={"Bekk"}>
-        <ExperienceEvent text="Internship 2021" />
+        <ExperienceEvent text="Summer internship" period="2021" />
+      </Experience>
+      <Divider />
+      <Experience Logo={Bekk} title={"University of Oslo"}>
+        <ExperienceEvent text="Bachelor degree" period="2018 - 2021" />
+        <ExperienceEvent text="Teaching assistant" period="2020 - 2022" />
+        <ExperienceEvent text="Master degree" period="2021 - 2023" />
       </Experience>
     </TimelineLayout>
   );
