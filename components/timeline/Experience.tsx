@@ -4,19 +4,20 @@ import { EventDivider } from "./EventDivider";
 
 type Props = {
   Logo?: React.FC<any>;
+  logo?: string;
   title?: string;
   children?: React.ReactNode;
 };
 
-export const Experience = ({ Logo, title, children }: Props) => {
+export const Experience = (props: Props) => {
   return (
     <>
-      <div>{<CompanyButton Logo={Logo} title={title} />}</div>
+      <div>{<CompanyButton {...props} />}</div>
       <div
         style={{ placeSelf: "center start" }}
         className="flex max-w-2xl flex-row items-center overflow-scroll"
       >
-        {React.Children.map(children, (child) => (
+        {React.Children.map(props.children, (child) => (
           <>
             <EventDivider />
             {child}
