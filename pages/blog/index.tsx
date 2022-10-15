@@ -1,3 +1,4 @@
+import { InferGetStaticPropsType } from "next";
 import { BlogPostsList } from "../../components/blog/BlogPostsList";
 import { getBlogPosts } from "../../lib/blog/getBlogPosts";
 
@@ -9,9 +10,18 @@ export interface Post {
   publish: boolean;
 }
 
-export default function Blog({ posts }: { posts: Post[] }) {
-  console.log(posts);
-  return <BlogPostsList title="Blog posts" posts={posts} />;
+export default function Blog({
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const parsedPosts: Post[] = posts.map((post) => {
+    return { ...post, date: new Date(post.date) };
+  });
+
+  return (
+    <div className="m-auto max-w-2xl">
+      <BlogPostsList title="All blog posts" posts={parsedPosts} />
+    </div>
+  );
 }
 
 export async function getStaticProps() {
@@ -19,7 +29,7 @@ export async function getStaticProps() {
   return {
     props: {
       posts: posts.map((post) => {
-        return { ...post, date: JSON.stringify(post.date) };
+        return { ...post, date: post.date.toLocaleString() };
       }),
     },
   };

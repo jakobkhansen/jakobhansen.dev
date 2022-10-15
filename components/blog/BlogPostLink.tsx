@@ -8,9 +8,14 @@ type Props = {
 
 export function BlogPostLink({ post }: Props) {
   const postLink = post.filename.replace(/\.[^/.]+$/, "");
+  console.log(post.date);
   return (
-    <div>
-      <Link href={join("/blog/posts", postLink)}>{post.title}</Link>
-    </div>
+    <Link href={join("/blog/posts", postLink)}>
+      <div className="blogpostcard cursor-pointer">
+        <h1 className="cursor-pointer text-lg font-bold">{post.title}</h1>
+        <p className="text-textsecondary">{post.date.toLocaleString()}</p>
+        <p>{post.description}</p>
+      </div>
+    </Link>
   );
 }

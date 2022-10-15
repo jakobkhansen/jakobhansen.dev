@@ -7,7 +7,8 @@ export function getBlogPosts(): Post[] {
   const postsFolder = join(process.cwd(), "pages", "blog", "posts");
   console.log(postsFolder);
   const fileNames = fs.readdirSync(postsFolder);
-  const posts = fileNames.map((filename) => {
+  console.log(fileNames);
+  let posts = fileNames.map((filename) => {
     const file = readFileSync(join(postsFolder, filename));
     const metadata = matter(file).data;
 
@@ -20,6 +21,8 @@ export function getBlogPosts(): Post[] {
       publish: metadata.publish,
     };
   });
+
+  posts = posts.sort((a, b) => b.date - a.date);
 
   return posts.filter((post) => post.publish);
 }

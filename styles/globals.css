@@ -15,3 +15,51 @@ svg {
 button {
   outline: none;
 }
+
+.blogpostcard:hover h1 {
+  text-decoration: underline;
+}
+
+.mdx > * {
+  padding-left: theme("padding.2");
+}
+
+/* MDX */
+
+/* all headers */
+.mdx > h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: theme("colors.stark");
+  font-weight: theme("fontWeight.extrabold");
+  width: theme("width.fit");
+  margin-top: theme("margin.2");
+}
+
+.mdx > h1 {
+  font-size: theme("fontSize.2xl");
+}
+
+.mdx > h2 {
+  font-size: theme("fontSize.xl");
+}
+
+.mdx > p {
+  font-size: theme("fontSize.sm");
+  width: theme("width.fit");
+  margin-top: theme("margin.2");
+  margin-bottom: theme("margin.2");
+}
+
+.mdx > * > a {
+  color: theme("colors.jewellight");
+  font-size: theme("fontSize.sm");
+  width: theme("width.fit");
+}
+
+.mdx > * > a:hover {
+  text-decoration: underline;
+}

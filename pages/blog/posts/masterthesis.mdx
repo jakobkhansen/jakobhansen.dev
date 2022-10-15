@@ -1,10 +1,49 @@
 ---
-title: Large scale incremental duplicate code detection while programming
-description: Vim
+title: Finding duplicated code in huge codebases
+description: My master thesis solved the problem of finding duplicate code quickly in huge codebases
 date: 2022-10-13
-publish: false
+publish: true
 ---
 
-# Incremental duplicate code detection in your editor
+import { PostLayout } from "../../../components/blog/PostLayout.tsx";
 
-Blah Blah Blah
+# Finding duplicated code in huge codebases
+
+**This is a WIP article**
+
+I'm currently writing a master thesis at The University of Oslo in Norway. Ever since I
+discovered the field of programming languages and compiler technology, I have been
+interested in leveraging such technologies in order to improve the quality of my own code.
+[As a Neovim user](/blog/posts/modernvim) I have became familiar with technologies such as
+[LSP](https://microsoft.github.io/language-server-protocol/) and
+[tree-sitter](https://tree-sitter.github.io/tree-sitter/), which is a pleasure to use in
+my daily programming work. For my thesis I wanted to explore the idea of adding more static
+analysis tools while editing, leveraging the editor-agnostic aspects of LSP, and the
+language agnostic (grammar pluggable) aspects of tree-sitter. The problem I decided to
+tackle was detection of duplicate code, otherwise known as code clone detection.
+
+## The problem
+
+To set the stage, the following will be the problem we are trying to solve. 
+
+We want to build a static analysis tool which runs as an LSP server, giving indications to
+the programmer that there are code duplicates in their codebase, at a given set of
+locations. As the programmer writes, changes or deletes code, we need to be able to react to
+those changes, finding or removing code clones from the programmers view as they appear/disappear.
+
+The real challenge with this problem is the algorithmic aspect. We need to process
+potentially many MLOC (million lines of code) and we need to do it quickly. This is
+impossible to do in real-time, but we have a trick up our sleeves. As the programmer edits
+source code, there is only a small portion of code in a single file which is edited at a
+time. This means that 99%+ of our codebase and list of clones will probably stay the same after each
+edit. If we can incrementally update our list of clones given only the small edit of the
+source code, this problem goes from impossible to do quickly, to a realistic, but tough
+challenge.
+
+
+## The algorithm
+
+First we need to parse our source code. We need to do this because we want to extract
+certain fragments of our code which will be considered for clone detection.
+
+export default ({ children }) => <PostLayout>{children}</PostLayout>;
