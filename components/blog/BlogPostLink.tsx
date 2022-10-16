@@ -13,7 +13,7 @@ export function BlogPostLink({ post }: Props) {
     <Link href={join("/blog/posts", postLink)}>
       <div className="blogpostcard cursor-pointer">
         <h1 className="cursor-pointer text-lg font-bold">{post.title}</h1>
-        <p className="text-textsecondary">{post.date.toLocaleString()}</p>
+        <p className="text-textsecondary">{post.date.toDateString()}</p>
         <p>{post.description}</p>
       </div>
     </Link>
