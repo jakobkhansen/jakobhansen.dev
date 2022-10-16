@@ -38,19 +38,25 @@ const Home = ({
               </div>
               <div className="m-2 flex w-full flex-row items-center justify-center p-2">
                 <Link href={linkedin}>
-                  <LinkedIn className="mx-0.5 h-6 cursor-pointer text-stark" />
+                  <div className="mx-2 cursor-pointer rounded-md py-2 outline outline-2 transition-all ease-in-out hover:outline-4">
+                    <LinkedIn className="mx-4 h-6 scale-150 cursor-pointer text-stark" />
+                  </div>
                 </Link>
                 <Link href={github}>
-                  <Github className="mx-0.5 h-6 cursor-pointer text-stark" />
+                  <div className="mx-2 cursor-pointer rounded-md py-2 outline outline-2 transition-all ease-in-out hover:outline-4">
+                    <Github className="mx-4 h-6 scale-150 text-stark" />
+                  </div>
                 </Link>
                 <Link href={email}>
-                  <Email className="mx-0.5 h-6 cursor-pointer text-stark" />
+                  <div className="mx-2 cursor-pointer rounded-md py-2 outline outline-2 transition-all ease-in-out hover:outline-4">
+                    <Email className="mx-4 my-auto h-6 scale-150 cursor-pointer text-stark" />
+                  </div>
                 </Link>
               </div>
             </div>
           </div>
         </section>
-        <section className="m-auto mt-4 max-w-2xl">
+        <section className="m-auto mt-4 max-w-2xl p-2">
           <BlogPostsList
             title={"Recent blog posts"}
             posts={parsedPosts}
