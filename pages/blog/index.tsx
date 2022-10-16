@@ -18,7 +18,7 @@ export default function Blog({
   });
 
   return (
-    <div className="m-auto max-w-2xl">
+    <div className="m-auto max-w-2xl p-2">
       <BlogPostsList title="All blog posts" posts={parsedPosts} />
     </div>
   );

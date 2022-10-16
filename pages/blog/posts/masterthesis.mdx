@@ -14,7 +14,7 @@ import { PostLayout } from "../../../components/blog/PostLayout.tsx";
 I'm currently writing a master thesis at The University of Oslo in Norway. Ever since I
 discovered the field of programming languages and compiler technology, I have been
 interested in leveraging such technologies in order to improve the quality of my own code.
-[As a Neovim user](/blog/posts/modernvim) I have became familiar with technologies such as
+[As a Neovim user](/blog/posts/modernvim), I have become familiar with technologies such as
 [LSP](https://microsoft.github.io/language-server-protocol/) and
 [tree-sitter](https://tree-sitter.github.io/tree-sitter/), which is a pleasure to use in
 my daily programming work. For my thesis I wanted to explore the idea of adding more static
@@ -40,10 +40,29 @@ edit. If we can incrementally update our list of clones given only the small edi
 source code, this problem goes from impossible to do quickly, to a realistic, but tough
 challenge.
 
+Preferrably we would have a solution capable of calculating the initial clones in
+`O(N)` time, and from there we are able to efficiently update the clone list given a
+smaller edit, in `O(|edit|)` time.
+
+This problem could be seen as a variation of the "maximal repeat" problem. Given a string,
+we want to find all the maximal repeat of at least size `k`, where `k` is the minimum
+length of a pair of code clones. However, we wouldn't want to plug our entire code-base
+directly into a maximal-repeat algorithm, the string would be too large to process in a
+reasonable amount of time. We might also want to only consider certain sections of source
+code (for example all methods). Therefore we need to pre-process our source-code.
+
+## Pre-processing timeline
+
+TODO
+- Parsing
+- Fingerprinting
 
 ## The algorithm
 
-First we need to parse our source code. We need to do this because we want to extract
-certain fragments of our code which will be considered for clone detection.
+TODO
+
+- Suffix array for maximal-repeat (LCP)
+- Fetching code clones from LCP array back to source code
+- Dynamic suffix array update
 
 export default ({ children }) => <PostLayout>{children}</PostLayout>;

@@ -63,3 +63,14 @@ h6 {
 .mdx > * > a:hover {
   text-decoration: underline;
 }
+
+.mdx > * > li {
+  list-style-type: square;
+}
+
+.mdx > * > code {
+  font-family: monospace;
+  background-color: theme("colors.neutralgray");
+  padding: 0.2em 0.4em;
+  border-radius: theme("borderRadius.md");
+}

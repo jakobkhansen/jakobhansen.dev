@@ -7,6 +7,8 @@ module.exports = {
         void: "#0E0B16",
         jewel: "#4717F6",
         jewellight: "#7f3af7",
+        twitchdark: "#641fff",
+        neutralgray: "#6e768166",
         stark: "#E7DFDD",
         textprimary: "#E7DFDD",
         textsecondary: "#99aab5",
