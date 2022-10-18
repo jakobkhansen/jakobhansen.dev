@@ -5,8 +5,6 @@ import Link from "next/link";
 function NavBarItem({ href, children }: { href: string; children: string }) {
   const router = useRouter();
   const isActive = router.pathname.split("/")[1] === href.split("/")[1];
-  console.log(router.pathname.split("/"));
-  console.log(href.split("/"));
   return (
     <Link href={href}>
       <div

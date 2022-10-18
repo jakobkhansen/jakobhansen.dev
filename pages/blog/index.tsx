@@ -25,6 +25,7 @@ export default function Blog({
 }
 
 export async function getStaticProps() {
+  console.log(process.env.MONKEY_TYPE_API);
   const posts = getBlogPosts();
   return {
     props: {

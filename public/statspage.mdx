@@ -1,0 +1,14 @@
+import { PostLayout } from "../components/blog/PostLayout.tsx";
+
+
+# My stats
+
+This page is a collection of silly stats about me, fetched from various API's.
+
+## Monkeytype
+
+WPM (15 sec): {props.monkeytype.personalBests.time["15"][1].wpm}  
+WPM (30 sec): {props.monkeytype.personalBests.time["30"][1].wpm}  
+WPM (60 sec): {props.monkeytype.personalBests.time["60"][1].wpm}
+
+export default ({ children }) => <PostLayout>{children}</PostLayout>;
