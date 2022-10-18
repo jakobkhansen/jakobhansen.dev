@@ -8,7 +8,6 @@ type Props = {
 
 export function BlogPostLink({ post }: Props) {
   const postLink = post.filename.replace(/\.[^/.]+$/, "");
-  console.log(post.date);
   return (
     <Link href={join("/blog/posts", postLink)}>
       <div className="blogpostcard cursor-pointer">

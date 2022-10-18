@@ -17,10 +17,10 @@ export function BlogPostsList({ posts, title, numPosts }: Props) {
       <h1 className="text-lg ">{title}</h1>
       <PostDivider />
       {posts.map((post) => (
-        <>
-          <BlogPostLink key={post.title} post={post} />
+        <div key={post.title}>
+          <BlogPostLink post={post} />
           <PostDivider />
-        </>
+        </div>
       ))}
     </div>
   );
