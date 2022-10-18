@@ -4,7 +4,9 @@ import Link from "next/link";
 
 function NavBarItem({ href, children }: { href: string; children: string }) {
   const router = useRouter();
-  const isActive = router.pathname === href;
+  const isActive = router.pathname.split("/")[1] === href.split("/")[1];
+  console.log(router.pathname.split("/"));
+  console.log(href.split("/"));
   return (
     <Link href={href}>
       <div
@@ -30,6 +32,7 @@ export function NavBar() {
       <NavBarItem href="/aboutme">Me</NavBarItem>
       <NavBarItem href="/portfolio">Portfolio</NavBarItem>
       <NavBarItem href="/blog">Blog</NavBarItem>
+      <NavBarItem href="/stats">Stats</NavBarItem>
     </div>
   );
 }
