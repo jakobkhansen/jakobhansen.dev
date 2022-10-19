@@ -1,5 +1,5 @@
 export async function getMonkeytypeUserData(uid: string) {
-  const monkeydata = fetch(`http://api.monkeytype.com/`);
+  const monkeydata = fetch(`https://catfact.ninja/fact`);
   return monkeydata;
 }
 
