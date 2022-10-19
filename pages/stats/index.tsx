@@ -14,9 +14,9 @@ export default function Stats({
 
 export async function getServerSideProps(context: any) {
   const monkeytype = await getMonkeytypeUserData("JakobHansen");
-  console.log(monkeytype);
+  console.log("await getMonkeytypeUserData", monkeytype);
   const data = processMonkeytypeData(monkeytype);
-  console.log(data);
+  console.log("processMonkeytypeData", data);
 
   return {
     props: {
