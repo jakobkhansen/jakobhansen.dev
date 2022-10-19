@@ -2,7 +2,10 @@ export async function getMonkeytypeUserData(uid: string) {
   const monkeydata = await fetch(
     `https://api.monkeytype.com/users/${uid}/profile`
   );
-  return await monkeydata.json();
+  console.log(monkeydata);
+  const json = await monkeydata.json();
+  console.log(json);
+  return json;
 }
 
 export function processMonkeytypeData(data: any) {
