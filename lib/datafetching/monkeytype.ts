@@ -1,5 +1,5 @@
 export async function getMonkeytypeUserData(uid: string) {
-  const monkeydata = fetch(`https://api.monkeytype.com/users/${uid}/profile`);
+  const monkeydata = fetch(`http://api.monkeytype.com/`);
   return monkeydata;
 }
 
