@@ -20,11 +20,15 @@ button {
   text-decoration: underline;
 }
 
+/* MDX */
+
 .mdx > * {
   padding-left: theme("padding.2");
 }
 
-/* MDX */
+.mdx > table {
+  margin-left: theme("margin.2");
+}
 
 /* all headers */
 .mdx > h1,

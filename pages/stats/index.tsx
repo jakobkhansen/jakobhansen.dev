@@ -1,26 +1,20 @@
 import { InferGetServerSidePropsType } from "next";
 import {
-  getMonkeytypeUserData,
+  useFetchMonkeytypeUserData,
   processMonkeytypeData,
 } from "../../lib/datafetching/monkeytype";
 import StatsPage from "../../content/statspage.mdx";
 import { Monkeytype } from "../../components/stats/Monkeytype";
 
-export default function Stats({
-  monkeytype,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  return <div>{monkeytype && <Monkeytype data={monkeytype} />}</div>;
-}
-
-export async function getServerSideProps(context: any) {
-  const monkeytype = getMonkeytypeUserData("JakobHansen");
-  console.log(monkeytype);
-  const data = await monkeytype.then((response) => response.text());
-  console.log(data);
-
-  return {
-    props: {
-      monkeytype: data,
-    },
-  };
+export default function Stats() {
+  return (
+    <div className="mdx m-auto max-w-2xl">
+      <h1>Stats</h1>
+      <p>
+        This is a collection of random stats about me fetched from different
+        APIs
+      </p>
+      {<Monkeytype />}
+    </div>
+  );
 }
