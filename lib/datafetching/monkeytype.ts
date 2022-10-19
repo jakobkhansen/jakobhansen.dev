@@ -1,14 +1,14 @@
+import axios from "axios";
+
 export async function getMonkeytypeUserData(uid: string) {
-  const monkeydata = await fetch(
+  const monkeydata = await axios.get(
     `https://api.monkeytype.com/users/${uid}/profile`
   );
-  console.log("await fetch", JSON.stringify(monkeydata));
-  if (!monkeydata.ok) {
+  console.log("await fetch", monkeydata);
+  if (monkeydata.status != 200) {
     return undefined;
   }
-  const json = await monkeydata.json();
-  console.log("await json", json);
-  return json;
+  return monkeydata.data;
 }
 
 export function processMonkeytypeData(data: any) {
