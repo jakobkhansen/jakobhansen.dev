@@ -11,8 +11,7 @@ export default function Stats() {
     <div className="mdx m-auto max-w-2xl">
       <h1>Stats</h1>
       <p>
-        This is a collection of random stats about me fetched from different
-        APIs
+        This is a collection of silly stats about me fetched from different APIs
       </p>
       {<Monkeytype />}
     </div>
