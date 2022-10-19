@@ -1,3 +1,11 @@
 export function getMonkeytypeUserData(uid: string) {
-  return fetch(`https://api.monkeytype.com/users/${uid}/profile`);
+  const monkeydata = fetch(`https://api.monkeytype.com/users/${uid}/profile`);
+  const data = monkeydata
+    .then((response) => response.json())
+    .then((data) => data);
+  return data;
+}
+
+export function processMonkeytypeData(data: any) {
+  return data;
 }

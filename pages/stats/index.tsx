@@ -1,6 +1,9 @@
 import { InferGetServerSidePropsType } from "next";
-import { getMonkeytypeUserData } from "../../lib/datafetching/monkeytype";
-import StatsPage from "../../public/statspage.mdx";
+import {
+  getMonkeytypeUserData,
+  processMonkeytypeData,
+} from "../../lib/datafetching/monkeytype";
+import StatsPage from "../../content/statspage.mdx";
 
 export default function Stats({
   monkeytype,
@@ -10,15 +13,12 @@ export default function Stats({
 }
 
 export async function getServerSideProps(context: any) {
-  const monkeytype = getMonkeytypeUserData("JakobHansen");
-  console.log(monkeytype);
-  const data = await monkeytype;
-  const json = await data.json();
-  console.log(json);
+  const monkeytype = await getMonkeytypeUserData("JakobHansen");
+  const data = processMonkeytypeData(monkeytype);
 
   return {
     props: {
-      monkeytype: json,
+      monkeytype: data,
     },
   };
 }
