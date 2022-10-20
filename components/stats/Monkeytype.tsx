@@ -25,8 +25,8 @@ export function Monkeytype() {
   const personalBestsTime60: TypingScore[] = data.data.personalBests.time["60"];
 
   const best15 = personalBestsTime15.sort((a, b) => b.wpm - a.wpm)[0];
-  const best30 = personalBestsTime15.sort((a, b) => b.wpm - a.wpm)[0];
-  const best60 = personalBestsTime15.sort((a, b) => b.wpm - a.wpm)[0];
+  const best30 = personalBestsTime30.sort((a, b) => b.wpm - a.wpm)[0];
+  const best60 = personalBestsTime60.sort((a, b) => b.wpm - a.wpm)[0];
 
   return (
     <>
