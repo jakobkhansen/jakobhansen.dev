@@ -15,11 +15,9 @@ export function BlogPostsList({ posts, title, numPosts }: Props) {
   return (
     <div>
       <h1 className="text-lg ">{title}</h1>
-      <PostDivider />
       {posts.map((post) => (
         <div key={post.title}>
           <BlogPostLink post={post} />
-          <PostDivider />
         </div>
       ))}
     </div>
