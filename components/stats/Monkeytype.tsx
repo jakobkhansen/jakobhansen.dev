@@ -1,7 +1,13 @@
 import { Bar, Tooltip, XAxis } from "recharts";
+import { ResponsiveContainer } from "recharts";
 import { YAxis } from "recharts";
 import { BarChart } from "recharts";
 import { useFetchMonkeytypeUserData } from "../../lib/datafetching/monkeytype";
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "../../tailwind.config";
+import colors from "tailwindcss/colors";
+
+const fullConfig = resolveConfig(tailwindConfig);
 
 type TypingScore = {
   acc: number;
@@ -38,22 +44,36 @@ export function Monkeytype() {
   return (
     <>
       <h2>Monkeytype - Typing speeds</h2>
-      <BarChart
-        width={500}
-        height={300}
-        data={bestScores}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <XAxis dataKey="mode" />
-        <YAxis />
-        <Bar dataKey="score.wpm" fill="#8884d8" barSize={60} />
-        <Tooltip cursor={false} />
-      </BarChart>
+      <ResponsiveContainer width="95%" height={400} className="mt-4">
+        <BarChart
+          width={500}
+          height={300}
+          data={bestScores}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <XAxis dataKey="mode" />
+          <YAxis
+            label={{
+              value: "WPM",
+              position: "insideLeft",
+              angle: -90,
+            }}
+          />
+          <Bar dataKey="score.wpm" fill="#8884d8" />
+          <Tooltip
+            formatter={(value, name, props) => [value, "WPM"]}
+            cursor={false}
+            contentStyle={{ background: "#0E0B16", borderColor: "stark" }}
+            animationEasing="ease"
+            wrapperStyle={{ background: "transparent" }}
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </>
   );
 }
