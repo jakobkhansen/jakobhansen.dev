@@ -27,7 +27,7 @@ export function NavBar() {
   return (
     <div className="mb-2 flex h-12 w-full items-center justify-center border-b border-gray-600 text-lg shadow-sm shadow-jewel">
       <NavBarItem href="/">Home</NavBarItem>
-      <NavBarItem href="/portfolio">Portfolio</NavBarItem>
+      <NavBarItem href="/experience">Experience</NavBarItem>
       <NavBarItem href="/blog">Blog</NavBarItem>
       <NavBarItem href="/stats">Stats</NavBarItem>
     </div>
