@@ -6,8 +6,8 @@ export const ExperienceStory = () => {
     <ExperienceBox
       image={placeholderUrl}
       title={"Placeholder title"}
-      description={"I worked at Placeholder for 25 years"}
-      date={new Date()}
+      description={"I worked at Placeholder"}
+      date={new Date().toDateString()}
     />
   );
 };

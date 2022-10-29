@@ -3,23 +3,29 @@ import Image from "next/image";
 type Props = {
   image: string;
   title?: string;
-  date?: Date;
+  date?: string;
   description?: string;
 };
 
 export function ExperienceBox({ image, title, description, date }: Props) {
   return (
-    <div className="h-30 w-20 rounded-xl border border-black bg-gray-900 text-purple-200 shadow shadow-white">
-      <div className="bg-start rounded-t-xl">
-        <Image
-          src={image}
-          className="rounded-t-xl bg-stark"
-          width={300}
-          height={300}
-          alt={title}
-        />
+    <div className="w-56 cursor-pointer rounded-xl border border-black bg-gray-900 text-sm shadow shadow-white transition duration-300 hover:shadow-jewellight">
+      <div className="rounded-t-xl bg-stark">
+        <div className="flex items-center justify-center rounded-t-xl bg-stark">
+          <Image
+            src={image}
+            width={175}
+            height={100}
+            objectFit="contain"
+            alt={title}
+          />
+        </div>
       </div>
-      <h1 className="p-2 text-stark">{title}</h1>
+      <h3 className="w-56 whitespace-nowrap px-2">{title}</h3>
+      <div className="w-56 whitespace-nowrap px-2 text-textsecondary">
+        {date}
+      </div>
+      <div className="w-56 whitespace-nowrap px-2">{description}</div>
     </div>
   );
 }
