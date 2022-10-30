@@ -10,7 +10,7 @@ function NavBarItem({ href, children }: { href: string; children: string }) {
       <div
         className={cn(
           { "bg-jewel": isActive },
-          "m-2 cursor-pointer rounded-md px-2",
+          "cursor-pointer rounded-md px-2",
           {
             "duration-500 hover:bg-jewel hover:bg-opacity-75 hover:transition-colors":
               !isActive,
@@ -25,7 +25,7 @@ function NavBarItem({ href, children }: { href: string; children: string }) {
 
 export function NavBar() {
   return (
-    <div className="mb-2 flex h-12 w-full items-center justify-center border-b border-gray-600 text-lg shadow-sm shadow-jewel">
+    <div className="mb-2 flex h-12 w-full items-center justify-center gap-2 border-b border-gray-600 text-base shadow-sm shadow-jewel sm:gap-4 sm:text-lg">
       <NavBarItem href="/">Home</NavBarItem>
       <NavBarItem href="/experience">Experience</NavBarItem>
       <NavBarItem href="/blog">Blog</NavBarItem>
