@@ -9,7 +9,7 @@ type Props = {
 
 export function ExperienceBox({ image, title, description, date }: Props) {
   return (
-    <div className="w-56 cursor-pointer rounded-xl border border-black bg-gray-900 text-sm shadow shadow-white transition duration-300 hover:shadow-jewellight">
+    <div className="w-56 cursor-pointer rounded-xl border border-black bg-gray-900 text-sm shadow shadow-gray-500 transition duration-300 hover:shadow-jewellight">
       <div className="rounded-t-xl bg-stark">
         <div className="flex items-center justify-center rounded-t-xl bg-stark">
           <Image

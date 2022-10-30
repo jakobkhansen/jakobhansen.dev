@@ -16,10 +16,6 @@ button {
   outline: none;
 }
 
-.blogpostcard:hover h1 {
-  text-decoration: underline;
-}
-
 /* MDX */
 
 .mdx > * {
