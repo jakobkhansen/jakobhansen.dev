@@ -1,11 +1,17 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { Fragment, PropsWithChildren } from "react";
 
 type Props = {
   isOpen: boolean;
   closeModal: () => void;
+  title: string;
 };
-export default function Modal({ isOpen, closeModal }: Props) {
+export default function Modal({
+  isOpen,
+  closeModal,
+  title,
+  children,
+}: PropsWithChildren<Props>) {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -32,19 +38,14 @@ export default function Modal({ isOpen, closeModal }: Props) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-900 p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-gray-900 p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Payment successful
+                  {title}
                 </Dialog.Title>
-                <div className="mt-2">
-                  <p className="text-sm text-stark">
-                    Your payment has been successfully submitted. We\u2019ve
-                    sent you an email with all of the details of your order.
-                  </p>
-                </div>
+                <div className="mt-2">{children}</div>
 
                 <div className="mt-4">
                   <button

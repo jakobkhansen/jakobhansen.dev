@@ -19,7 +19,7 @@ export function ExperienceBox({
 }: Props) {
   return (
     <button
-      className="w-56 cursor-pointer rounded-xl border border-black bg-gray-900 text-sm shadow shadow-gray-500 transition duration-300 hover:shadow-jewellight"
+      className="w-56 cursor-pointer rounded-xl border border-black bg-gray-900 text-left text-sm shadow shadow-gray-500 transition duration-300 hover:shadow-jewellight"
       onClick={() => onClick()}
     >
       <div className="rounded-t-xl bg-stark">

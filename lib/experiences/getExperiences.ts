@@ -4,10 +4,21 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 
+export type Experience = {
+  filename: string;
+  content: string;
+  title: string;
+  description: string;
+  period: number;
+  date: string;
+  dateText: string;
+  image: string;
+  mdx?: any;
+};
 export default function getExperiences() {
   const experienceFolder = join(process.cwd(), "experiences");
   const fileNames = fs.readdirSync(experienceFolder);
-  let experiences = fileNames.map((filename) => {
+  const experiences = fileNames.map((filename) => {
     const fileContent = readFileSync(join(experienceFolder, filename));
     const metadata = matter(fileContent).data;
 
@@ -16,10 +27,20 @@ export default function getExperiences() {
       content: fileContent.toString(),
       title: metadata.title,
       description: metadata.description,
-      date: metadata.date,
+      period: metadata.period,
+      date: metadata.date.toLocaleString(),
+      dateText: metadata.dateText,
       image: metadata.image,
     };
   });
 
-  return experiences;
+  let experiencesPerPeriod: { [key: string]: Experience[] } = {};
+  experiences.forEach((experience) => {
+    if (!experiencesPerPeriod[experience.period]) {
+      experiencesPerPeriod[experience.period] = [];
+    }
+    experiencesPerPeriod[experience.period].push(experience);
+  });
+
+  return experiencesPerPeriod;
 }
