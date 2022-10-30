@@ -8,6 +8,7 @@ export const ExperienceStory = () => {
       title={"Placeholder title"}
       description={"I worked at Placeholder"}
       date={new Date().toDateString()}
+      onClick={() => {}}
     />
   );
 };

@@ -78,6 +78,10 @@ h6 {
   list-style-type: square;
 }
 
+.mdx > ul {
+  padding-left: theme("padding.6");
+}
+
 .mdx > * > code {
   font-family: monospace;
   background-color: theme("colors.neutralgray");

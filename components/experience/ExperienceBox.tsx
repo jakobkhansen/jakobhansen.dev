@@ -1,15 +1,27 @@
+import { Dialog } from "@headlessui/react";
 import Image from "next/image";
+import { useState } from "react";
 
 type Props = {
   image: string;
   title?: string;
   date?: string;
   description?: string;
+  onClick: () => void;
 };
 
-export function ExperienceBox({ image, title, description, date }: Props) {
+export function ExperienceBox({
+  image,
+  title,
+  description,
+  date,
+  onClick,
+}: Props) {
   return (
-    <div className="w-56 cursor-pointer rounded-xl border border-black bg-gray-900 text-sm shadow shadow-gray-500 transition duration-300 hover:shadow-jewellight">
+    <button
+      className="w-56 cursor-pointer rounded-xl border border-black bg-gray-900 text-left text-sm shadow shadow-gray-500 transition duration-300 hover:shadow-jewellight"
+      onClick={() => onClick()}
+    >
       <div className="rounded-t-xl bg-stark">
         <div className="flex items-center justify-center rounded-t-xl bg-stark">
           <Image
@@ -26,6 +38,6 @@ export function ExperienceBox({ image, title, description, date }: Props) {
         {date}
       </div>
       <div className="w-56 whitespace-nowrap px-2">{description}</div>
-    </div>
+    </button>
   );
 }
