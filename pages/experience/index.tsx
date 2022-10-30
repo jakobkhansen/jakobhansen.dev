@@ -46,7 +46,7 @@ function Portfolio() {
         <ExperienceBox
           image={uioUrl}
           title="University of Oslo"
-          date="2018 - 2022"
+          date="2020 - 2022"
           description="Teaching assistant"
         />
       </TimePeriod>
