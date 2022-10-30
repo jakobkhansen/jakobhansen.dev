@@ -28,7 +28,7 @@ export default function getExperiences() {
       title: metadata.title,
       description: metadata.description,
       period: metadata.period,
-      date: metadata.date.toLocaleString(),
+      date: metadata.date.toString(),
       dateText: metadata.dateText,
       image: metadata.image,
     };
@@ -40,6 +40,11 @@ export default function getExperiences() {
       experiencesPerPeriod[experience.period] = [];
     }
     experiencesPerPeriod[experience.period].push(experience);
+  });
+  Object.keys(experiencesPerPeriod).forEach((period) => {
+    experiencesPerPeriod[period] = experiencesPerPeriod[period].sort(
+      (x, y) => Date.parse(x.date) - Date.parse(y.date)
+    );
   });
 
   return experiencesPerPeriod;
