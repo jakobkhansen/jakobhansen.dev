@@ -11,7 +11,54 @@ import { PostLayout } from '../../../components/blog/PostLayout.tsx'
 
 **This is a WIP article**
 
-I have been using Neovim for about 4 years at this point. I started using Neovim ...
+I have been using Neovim for almost 4 years. I started using Neovim during my second
+semester of CS studies, and I found the editor to be magical in terms of how I could
+express how I want to edit code in Vim's own "language", which felt very ergonomic. It
+certainly improved my text editing speed and comfort, but what's the point of talking
+about Vim in 2022? Most editors far outperform Vim with tooling, extensions and generally
+better language support, right?
+
+Enter Neovim, a fork of Vim which was created in 2014, which today is the only reasonable
+version of Vim to call "modern".
+
+In this article I will try to make the case that Neovim can rival (and even surpass)
+modern editors such as VSCode, and giving a high-level overview of the current plugin
+ecosystem which Neovim users should be aware of.
+
+## Neovim: batteries not included
+
+I want to preface this by saying that Neovim is an extendable editor. Terms such as
+[Personalized Development Environment](https://youtu.be/QMVIJhC9Veg) has been coined which
+puts Neovim closer to Emacs in how you would extend and personalize your editor.
+
+Extensibility runs in the Neovim communities veins, and you cannot expect to have a
+VSCode-experience in Neovim without setting up some plugins. 
+
+This is what my Neovim currently looks like:
+
+![Neovim](/myneovim.png)
+
+My config is a purely Lua, modular config, with 46 plugins. That may sound like a lot of
+plugins, but most Neovim plugins are pretty minimal. A typical plugin would for example
+only implement a new motion for surrounding text, or add Git information in the
+sign-column of the window (added, deleted), and many of these are features which are
+probably baked into your regular editor. The difference however comes in how you build up
+your config and compose these plugins and features into the ultimate editor for you.
+
+Let's look at file-navigation as an example on how you can personalize a workflow. Most
+modern editor would probably force you to use a regular file-tree. There is nothing wrong
+with using a file-tree, but Neovim doesn't force you into using one if something better
+fits your workflow. A good file-tree plugin is
+[Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim), but if you would want to have
+more of a fuzzy-finding experience,
+[Telescope](https://github.com/nvim-telescope/telescope.nvim) is a fantastic plugin. Other
+good options for file-navigation is [FZF](https://github.com/ibhagwan/fzf-lua),
+[fm-nvim](https://github.com/is0n/fm-nvim) or even just using the built-in Vim commands
+and the built-in Netrw navigator.
+
+## Lua and plugin ecosystem
+
+TODO
 
 ## LSP
 
@@ -21,8 +68,5 @@ TODO
 
 TODO
 
-## Lua and plugin ecosystem
-
-TODO
 
 export default ({children}) => <PostLayout>{children}</PostLayout>
