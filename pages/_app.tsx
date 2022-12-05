@@ -6,6 +6,7 @@ import { NavBar } from "../components/NavBar";
 import "../styles/globals.css";
 import { MDXProvider } from "@mdx-js/react";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/react";
 
 const CustomLink = (props: any) => {
   const href = props.href;
@@ -40,6 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </Head>
           <NavBar />
           <Component {...pageProps} />
+          <Analytics />
         </div>
       </MDXProvider>
     </QueryClientProvider>
