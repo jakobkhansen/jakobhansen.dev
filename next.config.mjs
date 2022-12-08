@@ -1,5 +1,7 @@
 import mdx from "@next/mdx";
 import remarkFrontmatter from "remark-frontmatter";
+import rehypeHighlight from "rehype-highlight";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -31,7 +33,7 @@ const withMDX = mdx({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [remarkFrontmatter],
-    rehypePlugins: [],
+    rehypePlugins: [rehypeHighlight],
     providerImportSource: "@mdx-js/react",
   },
 });

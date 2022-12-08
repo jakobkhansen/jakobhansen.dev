@@ -24,7 +24,7 @@ tackle was detection of duplicate code, otherwise known as code clone detection.
 
 ## The problem
 
-To set the stage, the following will be the problem we are trying to solve. 
+To set the stage, this is the problem we are trying to solve:
 
 We want to build a static analysis tool which runs as an LSP server, giving indications to
 the programmer that there are code duplicates in their codebase, at a given set of
@@ -33,12 +33,12 @@ those changes, finding or removing code clones from the programmers view as they
 
 The real challenge with this problem is the algorithmic aspect. We need to process
 potentially many MLOC (million lines of code) and we need to do it quickly. This is
-impossible to do in real-time, but we have a trick up our sleeves. As the programmer edits
-source code, there is only a small portion of code in a single file which is edited at a
-time. This means that 99%+ of our codebase and list of clones will probably stay the same after each
-edit. If we can incrementally update our list of clones given only the small edit of the
-source code, this problem goes from impossible to do quickly, to a realistic, but tough
-challenge.
+impossible to do in real-time, but we probably don't have to reprocess everything whenever
+the programmer does an edit, right? As the programmer edits source code, there is only a
+small portion of code in a single file which is edited at a time. This means that 99%+ of
+our codebase and list of clones will probably stay the same after each edit. If we can
+incrementally update our list of clones given only the small edit of the source code, this
+problem goes from impossible to do quickly, to a realistic, but tough challenge.
 
 Preferrably we would have a solution capable of calculating the initial clones in
 `O(N)` time, and from there we are able to efficiently update the clone list given a
@@ -56,6 +56,11 @@ code (for example all methods). Therefore we need to pre-process our source-code
 TODO
 - Parsing
 - Fingerprinting
+
+## Memory optimizations
+- Fingerprint size compared to source-code size
+- Source-map
+- Keeping only open files and their AST's in memory
 
 ## The algorithm
 
