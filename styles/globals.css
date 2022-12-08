@@ -64,13 +64,12 @@ h6 {
   margin-bottom: theme("margin.2");
 }
 
-.mdx > * > a {
+.mdx a {
   color: theme("colors.jewellight");
-  font-size: theme("fontSize.sm");
   width: theme("width.fit");
 }
 
-.mdx > * > a:hover {
+.mdx a:hover {
   text-decoration: underline;
 }
 
@@ -82,10 +81,17 @@ h6 {
   padding-left: theme("padding.6");
 }
 
-.mdx > * > code {
+.mdx code {
   font-family: monospace;
   background-color: theme("colors.neutralgray");
-  padding: 0.2em 0.4em;
   border-radius: theme("borderRadius.md");
   font-size: theme("fontSize.sm");
+}
+
+.mdx > pre > code {
+  margin-right: theme("margin.2");
+}
+
+.mdx img {
+  text-align: "center";
 }

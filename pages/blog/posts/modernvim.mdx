@@ -6,12 +6,14 @@ publish: true
 ---
 
 import { PostLayout } from '../../../components/blog/PostLayout.tsx'
+import Image from 'next/image';
+import myGif from 'url'
 
 # Modern Vim: Neovim in 2022
 
 **This is a WIP article**
 
-I have been using Neovim for almost 4 years. I started using Neovim during my second
+I have been using Neovim for about 4 years. I started using Neovim during my second
 semester of CS studies, and I found the editor to be magical in terms of how I could
 express how I want to edit code in Vim's own "language", which felt very ergonomic. It
 certainly improved my text editing speed and comfort, but what's the point of talking
@@ -34,11 +36,10 @@ puts Neovim closer to Emacs in how you would extend and personalize your editor.
 Extensibility runs in the Neovim communities veins, and you cannot expect to have a
 VSCode-experience in Neovim without setting up some plugins. 
 
-This is what my Neovim currently looks like:
-
 ![Neovim](/myneovim.png)
+*My Neovim*
 
-My config is a purely Lua, modular config, with 46 plugins. That may sound like a lot of
+My config is a purely Lua, modular config, with 45 plugins. That may sound like a lot of
 plugins, but most Neovim plugins are pretty minimal. A typical plugin would for example
 only implement a new motion for surrounding text, or add Git information in the
 sign-column of the window (added, deleted), and many of these are features which are
@@ -56,13 +57,84 @@ good options for file-navigation is [FZF](https://github.com/ibhagwan/fzf-lua),
 [fm-nvim](https://github.com/is0n/fm-nvim) or even just using the built-in Vim commands
 and the built-in Netrw navigator.
 
-## Lua and plugin ecosystem
+## Lua and the new Neovim plugin ecosystem
 
-TODO
+Neovim's plugin ecosystem entered a sort of renaissance period when Lua was introduced as
+an embedded plugin and configuration language in the 0.5 update. Lua is a much nicer
+language to work with than Vimscript, which was the previous language one would use to
+write Vim plugins. For reference, here is some code which can be used to open up a
+"popup-terminal" at the bottom of the buffer in Lua:
+
+```lua
+function P.openPopupTerminal(cmd)
+    -- Create window if it doesn't exist
+    vim.cmd("bot 15sp")
+    local popUpWindow = vim.api.nvim_get_current_win()
+
+    local popUpBuffer = vim.api.nvim_create_buf(false, true)
+
+    vim.api.nvim_win_set_buf(popUpWindow, popUpBuffer)
+
+    local on_exit = function()
+        vim.api.nvim_buf_delete(popUpBuffer, { force = true })
+        vim.api.nvim_win_close(popUpWindow, true)
+        lastOpenedTerminalJobId = nil
+    end
+
+    vim.api.nvim_command("startinsert")
+    lastOpenedTerminalJobId = vim.fn.termopen(cmd or vim.o.shell, {
+        on_exit = on_exit,
+    })
+end
+```
+
+Lua is a flexible scripting language, allowing procedural, object-oriented and
+functional programming techniques to work hand in hand to quickly iterate on plugins. Combine
+this with the well-defined and easy-to-use API's that Neovim provides to interact with the
+editor, and its not hard to see why this was a big success. 
+
+In my opinion, Lua has made both writing plugins and using plugins more flexible, its very
+easy to give users of your plugin the ability to extend your plugin by allowing them to
+for example run a custom callback when a certain event in your plugin happens.
+
+There are now dozens of plugins for Neovim which are very high quality and extendable,
+here are some of my favorites:
+
+- [Telescope](https://github.com/nvim-telescope/telescope.nvim) - Must-have fuzzy-finder
+- [Neorg](https://github.com/nvim-neorg/neorg) - Note-taking and organization
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Extensible auto-completion framework
 
 ## LSP
 
-TODO
+The Language Server Protocol is a godsend for people who use unconventional editors which
+doesn't necessarily have the backing of a huge community or company. Those who use more
+popular editors might be thinking "This is cool, but is there any tooling support for x
+language?", that's where LSP comes in.
+
+LSP is a protocol which defines how a language tooling server and a client should
+communicate. If the client wants to get auto-completions while typing, the interaction
+would look something like this:
+
+```txt
+    ┌────────────────┐Give me completions!┌────────────────┐
+    │                ├───────────────────►│                │
+    │     Client     │                    │     Server     │
+    │                │◄───────────────────┤                │
+    └────────────────┘    Completion[]    └────────────────┘
+```
+
+This kind of interaction allows the client to ask for a lot of different things, such as
+error-messages (diagnostics), go-to-definition, auto-completion and even generic
+"code-actions", which allows advanced commands to be run. An example of this would be the
+Java language-server, which allows the user to run a "extract-method" code-action
+
+This kind of interaction allows the client to ask for a lot of different things, such as
+error-messages (diagnostics), go-to-definition, auto-completion and even generic
+"code-actions", which allows advanced commands to be run. An example of this would be the
+Java language-server, which allows the user to run an "extract-method" code-action.
+
+![LSP](/lsp.gif)
+*Completion, diagnostics and go-to-definition in Neovim, with Java LSP server*
 
 ## Treesitter
 
