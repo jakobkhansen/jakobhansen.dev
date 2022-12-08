@@ -87,4 +87,5 @@ h6 {
   background-color: theme("colors.neutralgray");
   padding: 0.2em 0.4em;
   border-radius: theme("borderRadius.md");
+  font-size: theme("fontSize.sm");
 }
