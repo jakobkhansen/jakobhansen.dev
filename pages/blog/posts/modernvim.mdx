@@ -36,26 +36,45 @@ puts Neovim closer to Emacs in how you would extend and personalize your editor.
 Extensibility runs in the Neovim communities veins, and you cannot expect to have a
 VSCode-experience in Neovim without setting up some plugins. 
 
-![Neovim](/myneovim.png)
+![Neovim](/images/blogposts/modernvim/myneovim.png)
 *My Neovim*
 
-My config is a purely Lua, modular config, with 45 plugins. That may sound like a lot of
-plugins, but most Neovim plugins are pretty minimal. A typical plugin would for example
-only implement a new motion for surrounding text, or add Git information in the
-sign-column of the window (added, deleted), and many of these are features which are
+[My config](https://github.com/jakobkhansen/dotfiles/tree/master/.config/nvim) is a purely
+Lua, modular config, with ~40 plugins. That may sound like a lot of plugins, but most
+Neovim plugins are pretty minimal. A typical plugin would for example only implement a new
+motion, or add som Git information to the buffer, and many of these are features which are
 probably baked into your regular editor. The difference however comes in how you build up
-your config and compose these plugins and features into the ultimate editor for you.
+your config and compose these plugins and features into the ultimate editor for you. 
+
+One way that I have personalized my editor is that I have focused on having a very minimal
+interface and removing information which I do not need to look at often. I usually only
+have two windows open in a split, and no status-line, instead having hotkeys available
+which show me the information that I would usually put in my status-line (Git branch, cwd,
+...). File-tree, fuzzy-finder and terminal is just a hotkey away, but I rarely keep those
+visible all the time.
 
 Let's look at file-navigation as an example on how you can personalize a workflow. Most
 modern editor would probably force you to use a regular file-tree. There is nothing wrong
-with using a file-tree, but Neovim doesn't force you into using one if something better
-fits your workflow. A good file-tree plugin is
+with using a that, but Neovim doesn't force you into using one if something better fits
+your workflow. A good file-tree plugin is
 [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim), but if you would want to have
 more of a fuzzy-finding experience,
-[Telescope](https://github.com/nvim-telescope/telescope.nvim) is a fantastic plugin. Other
-good options for file-navigation is [FZF](https://github.com/ibhagwan/fzf-lua),
+[Telescope](https://github.com/nvim-telescope/telescope.nvim) is fantastic. Other good
+options for file-navigation is [FZF](https://github.com/ibhagwan/fzf-lua),
 [fm-nvim](https://github.com/is0n/fm-nvim) or even just using the built-in Vim commands
 and the built-in Netrw navigator.
+
+With this kind of angle, comparing a full-fledged IDE like IntelliJ to Neovim is similar
+to the [Composition vs
+inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance) idea. Neovim
+obviously prefers composition, as more advanced functionality and language-specific
+tooling is achieved from composition of many smaller plugins. An IDE like IntelliJ and its
+offsprings is more of an inheritance based text-editor, where language specific-tooling
+comes from a "subclass" of IntelliJ (PyCharm, CLion). In practice, I see the
+composition-based approach to editing features as a lot more flexible for the average
+programmer, if you ever want to add support for a new language in Neovim, just plug in or
+write an LSP server and maybe write a small plugin, the rest of the fantastic plugin
+ecosystem will do the rest for you.
 
 ## Lua and the new Neovim plugin ecosystem
 
@@ -63,14 +82,13 @@ Neovim's plugin ecosystem entered a sort of renaissance period when Lua was intr
 an embedded plugin and configuration language in the 0.5 update. Lua is a much nicer
 language to work with than Vimscript, which was the previous language one would use to
 write Vim plugins. For reference, here is some code which can be used to open up a
-"popup-terminal" at the bottom of the buffer in Lua:
+"popup-terminal" at the bottom of the viewport in Neovim:
 
 ```lua
 function P.openPopupTerminal(cmd)
-    -- Create window if it doesn't exist
     vim.cmd("bot 15sp")
-    local popUpWindow = vim.api.nvim_get_current_win()
 
+    local popUpWindow = vim.api.nvim_get_current_win()
     local popUpBuffer = vim.api.nvim_create_buf(false, true)
 
     vim.api.nvim_win_set_buf(popUpWindow, popUpBuffer)
@@ -90,19 +108,21 @@ end
 
 Lua is a flexible scripting language, allowing procedural, object-oriented and
 functional programming techniques to work hand in hand to quickly iterate on plugins. Combine
-this with the well-defined and easy-to-use API's that Neovim provides to interact with the
+this with the well-defined and well-documented API's that Neovim provides to interact with the
 editor, and its not hard to see why this was a big success. 
 
-In my opinion, Lua has made both writing plugins and using plugins more flexible, its very
-easy to give users of your plugin the ability to extend your plugin by allowing them to
-for example run a custom callback when a certain event in your plugin happens.
+In my opinion, Lua has made both writing plugins and using plugins more flexible, its easy
+to give users of your plugin the ability to extend your plugin by allowing them to for
+example run a custom callback when a certain event in your plugin happens.
 
 There are now dozens of plugins for Neovim which are very high quality and extendable,
 here are some of my favorites:
 
+- [Lazy](https://github.com/folke/lazy.nvim) - Plugin-manager with great lazy-loading and GUI
 - [Telescope](https://github.com/nvim-telescope/telescope.nvim) - Must-have fuzzy-finder
 - [Neorg](https://github.com/nvim-neorg/neorg) - Note-taking and organization
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Extensible auto-completion framework
+- [Mini.nvim](https://github.com/echasnovski/mini.nvim) - Small utility plugins
 
 ## LSP
 
@@ -116,11 +136,11 @@ communicate. If the client wants to get auto-completions while typing, the inter
 would look something like this:
 
 ```txt
-    ┌────────────────┐Give me completions!┌────────────────┐
-    │                ├───────────────────►│                │
-    │     Client     │                    │     Server     │
-    │                │◄───────────────────┤                │
-    └────────────────┘    Completion[]    └────────────────┘
+┌────────────────┐Give me completions!┌────────────────┐
+│                ├───────────────────►│                │
+│     Client     │                    │     Server     │
+│    (Neovim)    │◄───────────────────┤   (tsserver)   │
+└────────────────┘    Completion[]    └────────────────┘
 ```
 
 This kind of interaction allows the client to ask for a lot of different things, such as
@@ -133,12 +153,34 @@ error-messages (diagnostics), go-to-definition, auto-completion and even generic
 "code-actions", which allows advanced commands to be run. An example of this would be the
 Java language-server, which allows the user to run an "extract-method" code-action.
 
-![LSP](/lsp.gif)
+![LSP](/images/blogposts/modernvim/lsp.gif)
 *Completion, diagnostics and go-to-definition in Neovim, with Java LSP server*
 
 ## Treesitter
 
-TODO
+Finally, Tree-sitter is a language-agnostic incremental-parser generator. In layman's terms its a
+very fast parser which can analyze the structure of our programs. This gives us constant
+access to an AST-structure (Abstract syntax-tree) which we can analyze and do
+transformations on.
 
+![Tree-sitter](/images/blogposts/modernvim/treesitter.png)
+*Visualization of part of the AST tree-sitter generates*
+
+[Tree-sitter for Neovim](https://github.com/nvim-treesitter/nvim-treesitter) is used for
+syntax highlighting, but is very extensible for users and plugin authors
+
+The AST allows us to create [syntactically aware
+motions](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) like pressing
+`daf` to delete an entire function. These motions are configurable, and rely only on the
+tree-sitter AST nodes, so anyone could write a new motion which selects something random
+like an if-clause or a loop-initialization.
+
+Another usage of tree-sitter is to write transformations which allow us to do [simple
+refactorings](https://github.com/ThePrimeagen/refactoring.nvim). This plugin uses Neovim's
+tree-sitter API to move around nodes in the AST and thereby transforming our source-code
+by moving code around with a good guarantee that the syntactic integrity of our program is
+conserved (since we are moving AST nodes around, not text). Refactoring such as moving
+function parameters, extracting functions and a lot more become way easier with
+tree-sitter.
 
 export default ({children}) => <PostLayout>{children}</PostLayout>
