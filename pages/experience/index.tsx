@@ -19,7 +19,11 @@ import dynamic from "next/dynamic";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import { PostLayout } from "../../components/blog/PostLayout";
-const images = require.context("../../public", false, /\.svg$/);
+const images = require.context(
+  "../../public/images/experiences",
+  false,
+  /\.svg$/
+);
 
 function Portfolio({
   experiences,
@@ -35,9 +39,12 @@ function Portfolio({
     setActiveExperience(undefined);
   }
 
+  console.log(images);
   const svgs = Object.fromEntries(
     images.keys().map((image) => [image.slice(2), images(image)])
   );
+
+  console.log(svgs);
 
   return (
     <div>
