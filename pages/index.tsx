@@ -1,8 +1,8 @@
 import type { InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
-import LinkedIn from "../public/linkedin.svg?react";
-import Github from "../public/github.svg?react";
-import Email from "../public/email.svg?react";
+import LinkedIn from "../public/images/frontpage/linkedin.svg?react";
+import Github from "../public/images/frontpage/github.svg?react";
+import Email from "../public/images/frontpage/email.svg?react";
 import { BlogPostsList } from "../components/blog/BlogPostsList";
 import { getBlogPosts } from "../lib/blog/getBlogPosts";
 import { Post } from "./blog";
