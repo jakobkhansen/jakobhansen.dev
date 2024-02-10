@@ -26,7 +26,6 @@ export function ExperienceBox({
             src={image}
             width={175}
             height={100}
-            objectFit="contain"
             alt={title || ""}
             style={{ objectFit: "contain", width: 175, height: 100 }}
           />
