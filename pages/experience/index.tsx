@@ -32,19 +32,13 @@ function Portfolio({
     Experience | undefined
   >(undefined);
 
-  const openModal = (experience: Experience) => {
-    setActiveExperience(experience);
-  };
   function closeModal() {
     setActiveExperience(undefined);
   }
 
-  console.log(images);
   const svgs = Object.fromEntries(
     images.keys().map((image) => [image.slice(2), images(image)])
   );
-
-  console.log(svgs);
 
   return (
     <div>

@@ -28,7 +28,6 @@ export function Monkeytype() {
     return <h2>Monkeytype - Typing speeds</h2>;
   }
 
-  console.log(data);
   const personalBests: { [key: string]: TypingScore[] } =
     data.data.personalBests.time;
 
@@ -38,8 +37,6 @@ export function Monkeytype() {
       score: getBestScore(personalBests[key]),
     };
   });
-
-  console.log(bestScores);
 
   return (
     <>
