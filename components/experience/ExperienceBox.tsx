@@ -1,6 +1,4 @@
-import { Dialog } from "@headlessui/react";
 import Image from "next/image";
-import { useState } from "react";
 
 type Props = {
   image: string;
@@ -29,7 +27,7 @@ export function ExperienceBox({
             width={175}
             height={100}
             objectFit="contain"
-            alt={title}
+            alt={title || ""}
           />
         </div>
       </div>
