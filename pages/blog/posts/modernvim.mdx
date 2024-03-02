@@ -5,9 +5,9 @@ date: 2022-10-14
 publish: true
 ---
 
-import { PostLayout } from '../../../components/blog/PostLayout.tsx'
-import Image from 'next/image';
-import myGif from 'url'
+import { PostLayout } from "../../../components/blog/PostLayout.tsx";
+import Image from "next/image";
+import myGif from "url";
 
 # Modern Vim: Neovim in 2022
 
@@ -32,17 +32,17 @@ I want to preface this by saying that Neovim is an extendable editor. Terms such
 puts Neovim closer to Emacs in how you would extend and personalize your editor.
 
 Extensibility runs in the Neovim communities veins, and you cannot expect to have a
-VSCode-experience in Neovim without setting up some plugins. 
+VSCode-experience in Neovim without setting up some plugins.
 
 ![Neovim](/images/blogposts/modernvim/myneovim.png)
-*My Neovim*
+_My Neovim_
 
 [My config](https://github.com/jakobkhansen/dotfiles/tree/master/.config/nvim) is a purely
 Lua, modular config, with ~40 plugins. That may sound like a lot of plugins, but most
 Neovim plugins are pretty minimal. A typical plugin would for example only implement a new
 motion, or add som Git information to the buffer, and many of these are features which are
 probably baked into your regular editor. The difference however comes in how you build up
-your config and compose these plugins and features into the ultimate editor for you. 
+your config and compose these plugins and features into the ultimate editor for you.
 
 One way that I have personalized my editor is that I have focused on having a very minimal
 interface and removing information which I do not need to look at often. I usually only
@@ -107,9 +107,9 @@ end
 Lua is a flexible scripting language, allowing procedural, object-oriented and
 functional programming techniques to work hand in hand to quickly iterate on plugins. Combine
 this with the well-defined and well-documented API's that Neovim provides to interact with the
-editor, and its not hard to see why this was a big success. 
+editor, and it's not hard to see why this was a big success.
 
-In my opinion, Lua has made both writing plugins and using plugins more flexible, its easy
+In my opinion, Lua has made both writing plugins and using plugins more flexible, it's easy
 to give users of your plugin the ability to extend your plugin by allowing them to for
 example run a custom callback when a certain event in your plugin happens.
 
@@ -121,6 +121,7 @@ here are some of my favorites:
 - [Neorg](https://github.com/nvim-neorg/neorg) - Note-taking and organization
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Extensible auto-completion framework
 - [Mini.nvim](https://github.com/echasnovski/mini.nvim) - Small utility plugins
+- [Copilot.lua](https://github.com/zbirenbaum/copilot.lua) - Copilot auto-completion
 
 ## LSP
 
@@ -144,25 +145,20 @@ would look something like this:
 This kind of interaction allows the client to ask for a lot of different things, such as
 error-messages (diagnostics), go-to-definition, auto-completion and even generic
 "code-actions", which allows advanced commands to be run. An example of this would be the
-Java language-server, which allows the user to run a "extract-method" code-action
-
-This kind of interaction allows the client to ask for a lot of different things, such as
-error-messages (diagnostics), go-to-definition, auto-completion and even generic
-"code-actions", which allows advanced commands to be run. An example of this would be the
 Java language-server, which allows the user to run an "extract-method" code-action.
 
 ![LSP](/images/blogposts/modernvim/lsp.gif)
-*Completion, diagnostics and go-to-definition in Neovim, with Java LSP server*
+_Completion, diagnostics and go-to-definition in Neovim, with Java LSP server_
 
 ## Treesitter
 
-Finally, Tree-sitter is a language-agnostic incremental-parser generator. In layman's terms its a
+Finally, Tree-sitter is a language-agnostic incremental-parser generator. In layman's terms it's a
 very fast parser which can analyze the structure of our programs. This gives us constant
 access to an AST-structure (Abstract syntax-tree) which we can analyze and do
 transformations on.
 
 ![Tree-sitter](/images/blogposts/modernvim/treesitter.png)
-*Visualization of part of the AST tree-sitter generates*
+_Visualization of part of the AST tree-sitter generates_
 
 [Tree-sitter for Neovim](https://github.com/nvim-treesitter/nvim-treesitter) is used for
 syntax highlighting, but is very extensible for users and plugin authors as well.
@@ -181,4 +177,12 @@ conserved (since we are moving AST nodes around, not text). Refactoring such as 
 function parameters, extracting functions and a lot more become way easier with
 tree-sitter.
 
-export default ({children}) => <PostLayout>{children}</PostLayout>
+## Conclusion
+
+Hopefully, this article has shown that Neovim and terminal editors in general can still be
+top-contendors in terms of features for developers. Neovim already has a lot of benefits
+by being a lightweight terminal editor and very ergonomic motion-system, so if you are
+able to craft the rest of the features you need into your own personalized experience,
+this is a seriously powerful tool for any developer.
+
+export default ({ children }) => <PostLayout>{children}</PostLayout>;
