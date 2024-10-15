@@ -1,28 +1,20 @@
-import Image from "next/image";
-import { ExperienceBox } from "../../components/experience/ExperienceBox";
-import { Timeline } from "../../components/timeline/Timeline";
-import TimePeriod from "../../components/experience/TimePeriod";
 import remarkFrontmatter from "remark-frontmatter";
+import { ExperienceBox } from "../../components/experience/ExperienceBox";
+import TimePeriod from "../../components/experience/TimePeriod";
 
-import microsoftUrl from "../../public/microsoft.svg";
-import bekkUrl from "../../public/bekk.svg";
-import uioUrl from "../../public/uio.svg";
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { InferGetStaticPropsType } from "next";
+import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+import { useState } from "react";
+import { PostLayout } from "../../components/blog/PostLayout";
 import Modal from "../../components/Modal";
 import getExperiences, {
   Experience,
 } from "../../lib/experiences/getExperiences";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
-import { join } from "path";
-import dynamic from "next/dynamic";
-import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote } from "next-mdx-remote";
-import { PostLayout } from "../../components/blog/PostLayout";
 const images = require.context(
   "../../public/images/experiences",
   false,
-  /\.svg$/
+  /\.svg$/,
 );
 
 function Portfolio({
@@ -32,12 +24,19 @@ function Portfolio({
     Experience | undefined
   >(undefined);
 
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function openModal(experience: Experience) {
+    setActiveExperience(experience);
+    setModalOpen(true);
+  }
+
   function closeModal() {
-    setActiveExperience(undefined);
+    setModalOpen(false);
   }
 
   const svgs = Object.fromEntries(
-    images.keys().map((image) => [image.slice(2), images(image)])
+    images.keys().map((image) => [image.slice(2), images(image)]),
   );
 
   return (
@@ -56,7 +55,7 @@ function Portfolio({
                       title={experience.title}
                       date={experience.dateText}
                       description={experience.description}
-                      onClick={() => setActiveExperience(experience)}
+                      onClick={() => openModal(experience)}
                     />
                   );
                 })}
@@ -65,7 +64,7 @@ function Portfolio({
           })}
       </div>
       <Modal
-        isOpen={activeExperience != undefined}
+        isOpen={modalOpen}
         closeModal={closeModal}
         title={activeExperience?.title || ""}
       >
@@ -91,11 +90,11 @@ export async function getStaticProps() {
                 remarkPlugins: [remarkFrontmatter],
                 rehypePlugins: [],
               },
-            })
+            }),
           );
         });
         return experience;
-      })
+      }),
     );
   });
   const dataWithMdx: any = data.map;
