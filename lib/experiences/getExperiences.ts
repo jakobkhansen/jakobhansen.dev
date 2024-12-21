@@ -1,8 +1,6 @@
 import fs, { readFileSync } from "fs";
-import { join } from "path";
 import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote } from "next-mdx-remote";
+import { join } from "path";
 
 export type Experience = {
   filename: string;
@@ -16,7 +14,7 @@ export type Experience = {
   mdx?: any;
 };
 export default function getExperiences() {
-  const experienceFolder = join(process.cwd(), "experiences");
+  const experienceFolder = join(process.cwd(), "data", "experiences");
   const fileNames = fs.readdirSync(experienceFolder);
   const experiences = fileNames.map((filename) => {
     const fileContent = readFileSync(join(experienceFolder, filename));
@@ -43,7 +41,7 @@ export default function getExperiences() {
   });
   Object.keys(experiencesPerPeriod).forEach((period) => {
     experiencesPerPeriod[period] = experiencesPerPeriod[period].sort(
-      (x, y) => Date.parse(x.date) - Date.parse(y.date)
+      (x, y) => Date.parse(x.date) - Date.parse(y.date),
     );
   });
 
