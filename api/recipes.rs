@@ -16,6 +16,8 @@ async fn main() -> Result<(), Error> {
 pub async fn handler(_req: Request) -> Result<Response<Body>, Error> {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
     let folder = root.join("data/recipes");
+    let rootfiles = read_dir(root).unwrap();
+    println!("{:?}", rootfiles);
     let files = match read_dir(folder.clone()) {
         Ok(files) => files,
         Err(error) => {
