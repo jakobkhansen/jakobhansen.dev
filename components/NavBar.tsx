@@ -1,6 +1,6 @@
-import { useRouter } from "next/router";
 import cn from "classnames";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function NavBarItem({ href, children }: { href: string; children: string }) {
   const router = useRouter();
@@ -14,7 +14,7 @@ function NavBarItem({ href, children }: { href: string; children: string }) {
           {
             "duration-500 hover:bg-jewel hover:bg-opacity-75 hover:transition-colors":
               !isActive,
-          }
+          },
         )}
       >
         {children}
@@ -29,6 +29,7 @@ export function NavBar() {
       <NavBarItem href="/">Home</NavBarItem>
       <NavBarItem href="/experience">Experience</NavBarItem>
       <NavBarItem href="/blog">Blog</NavBarItem>
+      <NavBarItem href="/food">Food</NavBarItem>
       <NavBarItem href="/stats">Stats</NavBarItem>
     </div>
   );

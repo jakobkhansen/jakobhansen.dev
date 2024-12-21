@@ -4,13 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "build-recipes && next build",
+    "build-recipes": "node scripts/build-recipes.rs",
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "parse-recipe": "node scripts/parse-recipe.js"
   },
   "dependencies": {
+    "@cooklang/cooklang-ts": "^1.2.7",
     "@headlessui/react": "^1.6.6",
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
