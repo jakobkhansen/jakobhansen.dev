@@ -1,17 +1,18 @@
-import type { InferGetStaticPropsType, NextPage } from "next";
+import type { InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import LinkedIn from "../public/images/frontpage/linkedin.svg?react";
-import Github from "../public/images/frontpage/github.svg?react";
-import Email from "../public/images/frontpage/email.svg?react";
+import Link from "next/link";
 import { BlogPostsList } from "../components/blog/BlogPostsList";
 import { getBlogPosts } from "../lib/blog/getBlogPosts";
-import { Post } from "./blog";
-import Link from "next/link";
 import { getSocials } from "../lib/blog/getSocials";
+import Email from "../public/images/frontpage/email.svg?react";
+import Github from "../public/images/frontpage/github.svg?react";
+import LinkedIn from "../public/images/frontpage/linkedin.svg?react";
+import { Post } from "./blog";
 
 const Home = ({
   posts,
   socials,
+  cwd,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const parsedPosts: Post[] = posts.map((post) => {
     return { ...post, date: new Date(post.date) };
@@ -20,6 +21,7 @@ const Home = ({
 
   return (
     <div>
+      {cwd}
       <Head>
         <title>Jakob Hansen - Software Engineer</title>
         <meta name="description" content="Portfolio webiste" />
@@ -70,12 +72,14 @@ const Home = ({
 
 export async function getStaticProps() {
   const posts = getBlogPosts();
+  console.log("cwd", process.cwd());
   return {
     props: {
       posts: posts.map((post) => {
         return { ...post, date: post.date.toLocaleString() };
       }),
       socials: getSocials(),
+      cwd: process.cwd(),
     },
   };
 }

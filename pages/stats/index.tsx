@@ -1,9 +1,3 @@
-import { InferGetServerSidePropsType } from "next";
-import {
-  useFetchMonkeytypeUserData,
-  processMonkeytypeData,
-} from "../../lib/datafetching/monkeytype";
-import StatsPage from "../../content/statspage.mdx";
 import { Monkeytype } from "../../components/stats/Monkeytype";
 
 export default function Stats() {
