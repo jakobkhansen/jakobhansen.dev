@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "build-recipes && next build",
-    "build-recipes": "node scripts/build-recipes.rs",
+    "build": "npm run build-recipes && next build",
+    "build-recipes": "rustc --out-dir scripts scripts/build-recipes.rs && scripts/build-recipes",
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
