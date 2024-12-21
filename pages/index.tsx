@@ -2,6 +2,7 @@ import * as fs from "fs";
 import type { InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import path from "path";
 import { BlogPostsList } from "../components/blog/BlogPostsList";
 import { getBlogPosts } from "../lib/blog/getBlogPosts";
 import { getSocials } from "../lib/blog/getSocials";
@@ -76,7 +77,7 @@ const Home = ({
 export async function getStaticProps() {
   const posts = getBlogPosts();
   console.log("cwd", process.cwd());
-  const files = fs.readdirSync(process.cwd());
+  const files = fs.readdirSync(path.join(process.cwd(), "data", "recipes"));
   console.log(files);
   return {
     props: {
