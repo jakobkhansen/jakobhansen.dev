@@ -14,17 +14,8 @@ async fn main() -> Result<(), Error> {
 }
 
 pub async fn handler(_req: Request) -> Result<Response<Body>, Error> {
-    let root = Path::new(env!("CARGO_MANIFEST_DIR"));
+    let root = env::current_dir().unwrap();
     let folder = root.join("data/recipes");
-    let rootfiles = match read_dir(root) {
-        Ok(files) => files,
-        Err(error) => {
-            println!("{:?} {:?}", error, root);
-            panic!()
-        }
-    };
-
-    println!("{:?}", rootfiles);
 
     let files = match read_dir(folder.clone()) {
         Ok(files) => files,
@@ -53,16 +44,6 @@ pub async fn handler(_req: Request) -> Result<Response<Body>, Error> {
             parser.parse(&contents).unwrap_output()
         })
         .collect::<Vec<_>>();
-
-    println!("{:?}", recipes);
-
-    //     match read_to_string(folder) {
-    //     Ok(contents) => parser.parse(&contents).unwrap_output(),
-    //     Err(error) => {
-    //         println!("{:?}", error);
-    //         panic!()
-    //     }
-    // };
 
     let json = serde_json::to_string(&recipes).unwrap();
 
