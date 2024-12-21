@@ -1,3 +1,4 @@
+import * as fs from "fs";
 import type { InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -13,6 +14,7 @@ const Home = ({
   posts,
   socials,
   cwd,
+  files,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const parsedPosts: Post[] = posts.map((post) => {
     return { ...post, date: new Date(post.date) };
@@ -22,6 +24,7 @@ const Home = ({
   return (
     <div>
       {cwd}
+      {files}
       <Head>
         <title>Jakob Hansen - Software Engineer</title>
         <meta name="description" content="Portfolio webiste" />
@@ -73,6 +76,8 @@ const Home = ({
 export async function getStaticProps() {
   const posts = getBlogPosts();
   console.log("cwd", process.cwd());
+  const files = fs.readdirSync(process.cwd());
+  console.log(files);
   return {
     props: {
       posts: posts.map((post) => {
@@ -80,6 +85,7 @@ export async function getStaticProps() {
       }),
       socials: getSocials(),
       cwd: process.cwd(),
+      files,
     },
   };
 }
