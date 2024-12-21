@@ -3,15 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "verceldev": "npm run vercel build && npm run vercel dev",
     "vercel": "vercel",
     "dev": "next dev",
     "build": "next build",
-    "build:vercel": "vercel build",
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "parse-recipe": "node scripts/parse-recipe.js"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@cooklang/cooklang-ts": "^1.2.7",
