@@ -19,7 +19,7 @@ export default function Food({ recipes }: Props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const recipes = await fetchRecipes();
 
   return {

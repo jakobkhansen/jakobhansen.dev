@@ -1,11 +1,9 @@
 use std::{
     env,
     fs::{read_dir, read_to_string},
-    path::Path,
 };
 
 use cooklang::{Converter, CooklangParser, Extensions};
-use serde_json::to_string;
 use vercel_runtime::{run, Body, Error, Request, Response, StatusCode};
 
 #[tokio::main]
