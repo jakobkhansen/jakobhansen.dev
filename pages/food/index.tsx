@@ -6,7 +6,6 @@ type Props = {
 };
 
 export default function Food({ recipes }: Props) {
-  console.log("here", recipes);
   return (
     <div className="m-auto max-w-2xl">
       <p className="text-xl">
@@ -15,6 +14,7 @@ export default function Food({ recipes }: Props) {
       </p>
       <br />
       <h1 className="text-2xl">TODO</h1>
+      {JSON.stringify(recipes)}
     </div>
   );
 }
