@@ -14,7 +14,7 @@ export default function Food({ recipes }: Props) {
       </p>
       <br />
       <h1 className="text-2xl">TODO</h1>
-      {JSON.stringify(recipes)}
+      {recipes && JSON.stringify(recipes)}
     </div>
   );
 }
