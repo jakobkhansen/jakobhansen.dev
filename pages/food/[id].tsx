@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-export default function RecipePage(props) {
+export default function RecipePage(props: any) {
   const router = useRouter();
 
   console.log(router.query.id);

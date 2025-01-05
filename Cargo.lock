@@ -655,6 +655,7 @@ dependencies = [
  "cooklang",
  "serde_json",
  "tokio",
+ "url",
  "vercel_runtime",
 ]
 
