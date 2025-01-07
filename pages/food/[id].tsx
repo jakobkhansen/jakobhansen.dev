@@ -1,8 +1,28 @@
-import { useRouter } from "next/router";
+import { Metadata, Recipe } from "@cooklang/cooklang-ts";
+import { GetServerSidePropsContext } from "next";
+import { fetchRecipe } from "../../lib/datafetching/recipes";
 
-export default function RecipePage(props: any) {
-  const router = useRouter();
+type Props = {
+  recipe: Recipe;
+};
 
-  console.log(router.query.id);
-  return <div className="m-auto max-w-2xl">{router.query.id}</div>;
+export default function RecipePage({ recipe }: Props) {
+  const metadata = recipe.metadata.map as unknown as Metadata;
+  return <div className="m-auto max-w-2xl">{metadata.title || ""}</div>;
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const recipeName = context.params?.id;
+
+  if (!recipeName || typeof recipeName !== "string") {
+    return <div>404</div>;
+  }
+
+  const recipe = await fetchRecipe(recipeName);
+
+  return {
+    props: {
+      recipe,
+    },
+  };
 }
