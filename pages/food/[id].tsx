@@ -1,21 +1,30 @@
-import { Metadata, Recipe } from "@cooklang/cooklang-ts";
+import { Recipe as RecipeCooklang } from "@cooklang/cooklang-ts";
 import { GetServerSidePropsContext } from "next";
+import Error from "next/error";
+import { Recipe } from "../../components/food/Recipe";
 import { fetchRecipe } from "../../lib/datafetching/recipes";
 
 type Props = {
-  recipe: Recipe;
+  recipe: RecipeCooklang | undefined;
 };
 
 export default function RecipePage({ recipe }: Props) {
-  const metadata = recipe.metadata.map as unknown as Metadata;
-  return <div className="m-auto max-w-2xl">{metadata.title || ""}</div>;
+  if (!recipe) {
+    return <Error statusCode={404} />;
+  }
+
+  return <Recipe recipe={recipe} />;
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const recipeName = context.params?.id;
 
   if (!recipeName || typeof recipeName !== "string") {
-    return <div>404</div>;
+    return {
+      props: {
+        recipe: null,
+      },
+    };
   }
 
   const recipe = await fetchRecipe(recipeName);
