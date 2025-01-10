@@ -6,10 +6,10 @@ type Props = {
 };
 
 export default function RecipeList({ recipes }: Props) {
-  console.log(recipes);
+  const recipesSorted = useRecipeSort(recipes);
   return (
-    <div className="m-auto max-w-2xl">
-      {recipes.map((recipe) => {
+    <div className="mdx m-auto max-w-2xl">
+      {recipesSorted.map((recipe) => {
         const metadata = recipe.metadata.map as unknown as Metadata;
         const filename = metadata.filename.split(".")[0];
         return (
@@ -21,3 +21,11 @@ export default function RecipeList({ recipes }: Props) {
     </div>
   );
 }
+
+const useRecipeSort = (recipes: Recipe[]) => {
+  return recipes.sort((a, b) => {
+    const metadataA = a.metadata.map as unknown as Metadata;
+    const metadataB = b.metadata.map as unknown as Metadata;
+    return metadataA.title.localeCompare(metadataB.title);
+  });
+};
