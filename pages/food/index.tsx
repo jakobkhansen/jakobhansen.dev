@@ -1,5 +1,5 @@
-import { Recipe } from "@cooklang/cooklang-ts";
 import RecipeList from "../../components/food/RecipeList";
+import { Recipe } from "../../lib/cooklang/types";
 import { fetchRecipes } from "../../lib/datafetching/recipes";
 
 type Props = {

@@ -1,11 +1,11 @@
-import { Recipe as RecipeCooklang } from "@cooklang/cooklang-ts";
 import { GetServerSidePropsContext } from "next";
 import Error from "next/error";
 import { Recipe } from "../../components/food/Recipe";
+import { Recipe as RecipeType } from "../../lib/cooklang/types";
 import { fetchRecipe } from "../../lib/datafetching/recipes";
 
 type Props = {
-  recipe: RecipeCooklang | undefined;
+  recipe: RecipeType | undefined;
 };
 
 export default function RecipePage({ recipe }: Props) {

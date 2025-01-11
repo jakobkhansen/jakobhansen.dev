@@ -1,4 +1,4 @@
-import { Recipe } from "@cooklang/cooklang-ts";
+import { Recipe } from "../cooklang/types";
 
 export async function fetchRecipes(): Promise<Recipe[] | null> {
   const recipes = await fetch(process.env.URL + "/api/recipes");

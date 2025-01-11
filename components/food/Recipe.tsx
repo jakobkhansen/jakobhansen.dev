@@ -1,7 +1,8 @@
-import { Metadata, Recipe as RecipeCooklang } from "@cooklang/cooklang-ts";
+import { Metadata } from "@cooklang/cooklang-ts";
+import { Ingredient, Recipe as RecipeType } from "../../lib/cooklang/types";
 
 type Props = {
-  recipe: RecipeCooklang;
+  recipe: RecipeType;
 };
 
 export function Recipe({ recipe }: Props) {
@@ -22,7 +23,7 @@ export function Recipe({ recipe }: Props) {
   );
 }
 
-const useFilterIngredients = (ingredients: RecipeCooklang["ingredients"]) => {
+const useFilterIngredients = (ingredients: Ingredient[]) => {
   return ingredients.filter((ingredient) => {
     return ingredient.modifiers == "";
   });
