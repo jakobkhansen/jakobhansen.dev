@@ -17,7 +17,7 @@ export function Recipe({ recipe }: Props) {
       <h1>{metadata.title}</h1>
       <h2>Ingredients</h2>
       {ingredientList.map((ingredient) => (
-        <div key={ingredient.name}>
+        <div key={ingredient.name} id={`${ingredient.name}`}>
           {ingredient.quantity && (
             <>
               <span>{parseQuantity(ingredient.quantity)}&nbsp;</span>
@@ -32,14 +32,14 @@ export function Recipe({ recipe }: Props) {
       ))}
       <h2>Steps</h2>
       {recipe.sections.map((section) => (
-        <>
-          {section.name && <h3 key={section.name}>{section.name}</h3>}
+        <div key={section.name}>
+          {section.name && <h3>{section.name}</h3>}
           <div className="block">
-            {section.content.map((content) => (
-              <span>{parseSectionContent(content)}</span>
+            {section.content.map((content, i) => (
+              <span key={i}>{parseSectionContent(content, recipe)}</span>
             ))}
           </div>
-        </>
+        </div>
       ))}
     </div>
   );

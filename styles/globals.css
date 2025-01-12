@@ -87,3 +87,7 @@ h6 {
   border-radius: theme("borderRadius.md");
   font-size: theme("fontSize.sm");
 }
+
+:target {
+  background-color: #ffa;
+}

@@ -10,6 +10,7 @@ export type Recipe = {
   };
   ingredients: Ingredient[];
   sections: Section[];
+  cookware: Cookware[];
 };
 
 export type Ingredient = {
@@ -81,3 +82,7 @@ export type StepItem =
       type: "cookware";
       index: number;
     };
+
+export type Cookware = {
+  name: string;
+};

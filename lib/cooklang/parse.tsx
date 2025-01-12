@@ -1,6 +1,7 @@
 import {
   NumberValue,
   Quantity,
+  Recipe,
   SectionContent,
   SectionStep,
   StepItem,
@@ -36,24 +37,31 @@ function parseNumberValue(value: NumberValue) {
   }
 }
 
-export function parseSectionContent(content: SectionContent): string {
+export function parseSectionContent(
+  content: SectionContent,
+  recipe: Recipe,
+): JSX.Element[] {
   switch (content.type) {
     case "step":
-      return parseStep(content.value);
+      return parseStep(content.value, recipe);
   }
 }
 
-function parseStep(step: SectionStep): string {
-  return step.items.map(parseStepItem).join(" ");
+function parseStep(step: SectionStep, recipe: Recipe): JSX.Element[] {
+  return step.items.map((step) => parseStepItem(step, recipe));
 }
 
-function parseStepItem(item: StepItem): string {
+function parseStepItem(item: StepItem, recipe: Recipe): JSX.Element {
   switch (item.type) {
     case "ingredient":
-      return String(item.index);
+      return (
+        <a href={`#${recipe.ingredients[item.index].name}`}>
+          {recipe.ingredients[item.index].name}
+        </a>
+      );
     case "text":
-      return item.value;
+      return <span>{item.value}</span>;
     case "cookware":
-      return String(item.index);
+      return <span>{recipe.cookware[item.index].name}</span>;
   }
 }
