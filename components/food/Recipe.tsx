@@ -16,7 +16,7 @@ export function Recipe({ recipe }: Props) {
     <div className="mdx m-auto max-w-2xl">
       <h1>{metadata.title}</h1>
       <h2>Ingredients</h2>
-      {ingredientList.map((ingredient) => (
+      {ingredientList.map((ingredient, index) => (
         <div key={ingredient.name} id={`${ingredient.name}`}>
           {ingredient.quantity && (
             <>
@@ -30,14 +30,19 @@ export function Recipe({ recipe }: Props) {
           {ingredient.note && <span>&nbsp;({ingredient.note})</span>}
         </div>
       ))}
+      <br />
       <h2>Steps</h2>
       {recipe.sections.map((section) => (
         <div key={section.name}>
           {section.name && <h3>{section.name}</h3>}
           <div className="block">
             {section.content.map((content, i) => (
-              <span key={i}>{parseSectionContent(content, recipe)}</span>
+              <>
+                <br />
+                <p key={i}>{parseSectionContent(content, recipe)}</p>
+              </>
             ))}
+            <br />
           </div>
         </div>
       ))}

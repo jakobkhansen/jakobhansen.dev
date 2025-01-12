@@ -89,5 +89,16 @@ h6 {
 }
 
 :target {
-  background-color: #ffa;
+  animation: color-change 5s 1;
+  scroll-margin-top: 1000px;
+}
+
+@keyframes color-change {
+  from {
+    color: theme("colors.jewellight");
+  }
+
+  to {
+    color: theme("colors.stark");
+  }
 }
