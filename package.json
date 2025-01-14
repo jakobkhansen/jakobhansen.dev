@@ -36,8 +36,8 @@
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@chromatic-com/storybook": "^3",
-    "@storybook/addon-onboarding": "^8.4.7",
     "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-onboarding": "^8.4.7",
     "@storybook/addon-webpack5-compiler-babel": "^3.0.5",
     "@storybook/blocks": "^8.4.7",
     "@storybook/nextjs": "^8.4.7",
@@ -46,6 +46,7 @@
     "@types/node": "18.7.14",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",
+    "@types/webpack-env": "^1.18.5",
     "autoprefixer": "^10.4.8",
     "babel-loader": "^8.2.5",
     "eslint": "8.23.0",
