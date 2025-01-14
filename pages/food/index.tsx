@@ -1,4 +1,5 @@
-import { Recipe } from "@cooklang/cooklang-ts";
+import RecipeList from "../../components/food/RecipeList";
+import { Recipe } from "../../lib/cooklang/types";
 import { fetchRecipes } from "../../lib/datafetching/recipes";
 
 type Props = {
@@ -13,8 +14,7 @@ export default function Food({ recipes }: Props) {
         This is a collection of some of my favorite recipes.
       </p>
       <br />
-      <h1 className="text-2xl">TODO</h1>
-      {recipes && JSON.stringify(recipes)}
+      <RecipeList recipes={recipes} />
     </div>
   );
 }

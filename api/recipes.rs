@@ -39,7 +39,19 @@ pub async fn handler(_req: Request) -> Result<Response<Body>, Error> {
         .iter()
         .map(|file| {
             let contents = read_to_string(file).unwrap();
-            parser.parse(&contents).unwrap_output()
+            let mut recipe = parser.parse(&contents).unwrap_output();
+
+            recipe.metadata.map.insert(
+                "filename".into(),
+                file.file_name()
+                    .unwrap()
+                    .to_str()
+                    .unwrap()
+                    .to_string()
+                    .into(),
+            );
+
+            recipe
         })
         .collect::<Vec<_>>();
 

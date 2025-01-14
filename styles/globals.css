@@ -18,17 +18,17 @@ button {
 
 /* MDX */
 
-.mdx > * {
+.mdx>* {
   padding-left: theme("padding.2");
   padding-right: theme("padding.2");
 }
 
-.mdx > table {
+.mdx>table {
   margin-left: theme("margin.2");
 }
 
 /* all headers */
-.mdx > h1,
+.mdx>h1,
 h2,
 h3,
 h4,
@@ -40,26 +40,25 @@ h6 {
   margin-top: theme("margin.2");
 }
 
-.mdx > h1:before,
-.mdx > h2:before,
-.mdx > h3:before,
-.mdx > h4:before,
-.mdx > h5:before,
-.mdx > h6:before {
+.mdx h1:before,
+.mdx h2:before,
+.mdx h3:before,
+.mdx h4:before,
+.mdx h5:before,
+.mdx h6:before {
   content: "# ";
   color: theme("colors.jewellight");
 }
 
-.mdx > h1 {
+.mdx>h1 {
   font-size: theme("fontSize.2xl");
 }
 
-.mdx > h2 {
+.mdx>h2 {
   font-size: theme("fontSize.xl");
 }
 
-.mdx > p {
-  font-size: theme("fontSize.sm");
+.mdx>p {
   width: theme("width.fit");
   margin-top: theme("margin.2");
   margin-bottom: theme("margin.2");
@@ -74,11 +73,11 @@ h6 {
   text-decoration: underline;
 }
 
-.mdx > * > li {
+.mdx>*>li {
   list-style-type: square;
 }
 
-.mdx > ul {
+.mdx>ul {
   padding-left: theme("padding.6");
 }
 
@@ -87,4 +86,19 @@ h6 {
   background-color: theme("colors.neutralgray");
   border-radius: theme("borderRadius.md");
   font-size: theme("fontSize.sm");
+}
+
+:target {
+  animation: color-change 5s 1;
+  scroll-margin-top: 1000px;
+}
+
+@keyframes color-change {
+  from {
+    color: theme("colors.jewellight");
+  }
+
+  to {
+    color: theme("colors.stark");
+  }
 }

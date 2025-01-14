@@ -38,3 +38,6 @@ next-env.d.ts
 /target
 
 /scripts/build-recipes
+
+*storybook.log
+storybook-static
