@@ -40,12 +40,12 @@ h6 {
   margin-top: theme("margin.2");
 }
 
-.mdx>h1:before,
-.mdx>h2:before,
-.mdx>h3:before,
-.mdx>h4:before,
-.mdx>h5:before,
-.mdx>h6:before {
+.mdx h1:before,
+.mdx h2:before,
+.mdx h3:before,
+.mdx h4:before,
+.mdx h5:before,
+.mdx h6:before {
   content: "# ";
   color: theme("colors.jewellight");
 }

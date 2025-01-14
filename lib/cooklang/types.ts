@@ -18,6 +18,7 @@ export type Ingredient = {
   modifiers: string;
   note?: string;
   quantity?: Quantity;
+  alias?: string;
 };
 
 export type Quantity = {

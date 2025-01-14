@@ -54,9 +54,10 @@ function parseStep(step: SectionStep, recipe: Recipe): JSX.Element[] {
 function parseStepItem(item: StepItem, recipe: Recipe): JSX.Element {
   switch (item.type) {
     case "ingredient":
+      const ingredient = recipe.ingredients[item.index];
       return (
-        <a href={`#${recipe.ingredients[item.index].name}`}>
-          {recipe.ingredients[item.index].name}
+        <a href={`#${ingredient.name}`}>
+          {ingredient.alias ? ingredient.alias : ingredient.name}
         </a>
       );
     case "text":
