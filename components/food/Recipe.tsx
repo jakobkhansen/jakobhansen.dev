@@ -11,8 +11,6 @@ export function Recipe({ recipe: r }: Props) {
   const recipe = preprocess_recipe(r);
   const metadata = recipe.metadata.map as unknown as Metadata;
 
-  console.log(recipe);
-
   return (
     <div className="mdx m-auto max-w-2xl">
       <h1>{metadata.title}</h1>
