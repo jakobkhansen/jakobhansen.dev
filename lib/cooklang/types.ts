@@ -11,6 +11,11 @@ export type Recipe = {
   ingredients: Ingredient[];
   sections: Section[];
   cookware: Cookware[];
+
+  // custom
+  extra?: {
+    filteredIngredients?: Ingredient[];
+  };
 };
 
 export type Ingredient = {
@@ -19,6 +24,11 @@ export type Ingredient = {
   note?: string;
   quantity?: Quantity;
   alias?: string;
+
+  // custom
+  extra?: {
+    section?: number;
+  };
 };
 
 export type Quantity = {
